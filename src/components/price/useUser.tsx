@@ -1,0 +1,24 @@
+// // import { Payment, Subscription, User } from ".";
+// import { cn, fetcher } from "@/lib/utils";
+// import type { Payment, Subscription, User } from "@prisma/client";
+// import useSWR from "swr";
+
+// interface UserWithSubscriptions extends User {
+//   id: string;
+//   subscriptions: Subscription[];
+//   payments: Payment[];
+// }
+// export const useUser = () => {
+//   const { data, isLoading } = useSWR<{ user: UserWithSubscriptions }>(
+//     "/api/v1/me",
+//     fetcher
+//   );
+
+//   return {
+//     user: data?.user,
+//     isLoading,
+//     subscribed: data?.user?.subscriptions.some(
+//       (sub: { status: string; }) => sub.status === "active"
+//     ),
+//   };
+// };

@@ -1,0 +1,143 @@
+"use client";
+
+import { Icons } from "../main-page/icons";
+import { buttonVariants } from "../price/button";
+import { toast } from "./use-toast";
+
+// import { userAuthSchema } from "./auth";
+// import { zodResolver } from "";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+import * as React from "react";
+import {  useForm } from "react-hook-form";
+import * as z from "zod";
+import { userAuthSchema } from "./auth";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form";
+import { Input } from "../ui/input";
+import { cn } from "@/lib/utils";
+
+
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+type FormData = z.infer<typeof userAuthSchema>;
+
+export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+  const form = useForm<FormData>({
+    resolver: zodResolver(userAuthSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false);
+  const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false);
+
+  const searchParams = useSearchParams();
+
+  async function onSubmit(data: FormData) {
+    setIsLoading(true);
+
+    const signInResult = await signIn("email", {
+      email: data.email.toLowerCase(),
+      redirect: false,
+      callbackUrl: "/",
+    });
+
+    setIsLoading(false);
+
+    if (!signInResult?.ok) {
+      return toast({
+        title: "Something went wrong.",
+        description: "Your sign in request failed. Please try again.",
+        variant: "destructive",
+      });
+    }
+
+    return toast({
+      title: "Check your email",
+      description: "We sent you a login link. Be sure to check your spam too.",
+    });
+  }
+
+  return (
+    <div className={cn("grid gap-4", className)} {...props}>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="grid gap-2">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      id="email"
+                      placeholder="name@example.com"
+                      type="email"
+                      autoCapitalize="none"
+                      autoComplete="email"
+                      autoCorrect="off"
+                      disabled={isLoading || isGitHubLoading}
+                      {...field}
+                    />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <button className={cn(buttonVariants())} disabled={isLoading}>
+              {isLoading && (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Sign In with Email
+            </button>
+          </div>
+        </form>
+      </Form>
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-background px-2 text-muted-foreground">
+            Or continue with
+          </span>
+        </div>
+      </div>
+      <button
+        type="button"
+        className={cn(buttonVariants({ variant: "outline" }))}
+        onClick={() => {
+          setIsGoogleLoading(true);
+          signIn("google", { callbackUrl: "/openai" });
+        }}
+        disabled={isLoading || isGoogleLoading}
+      >
+        {isGoogleLoading ? (
+          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+        ) : (
+          <Icons.google className="mr-2 h-4 w-4" />
+        )}{" "}
+        Google
+      </button>
+      <button
+        type="button"
+        className={cn(buttonVariants({ variant: "outline" }))}
+        onClick={() => {
+          setIsGitHubLoading(true);
+          signIn("github", { callbackUrl: "/openai" });
+        }}
+        disabled={isLoading || isGitHubLoading}
+      >
+        {isGitHubLoading ? (
+          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+        ) : (
+          <Icons.gitHub className="mr-2 h-4 w-4" />
+        )}{" "}
+        Github
+      </button>
+    </div>
+  );
+}

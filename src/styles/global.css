@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+   /* global.css */
+
+/* Reset default styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set up font and text styles */
+html {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Apply the checkered background */
+.checkered-background {
+  background-image: linear-gradient(45deg, #ccc 25%, transparent 25%),
+                    linear-gradient(-45deg, #ccc 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #ccc 75%),
+                    linear-gradient(-45deg, transparent 75%, #ccc 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  background-color: white;
+}
+
+/* Utility classes (You can add more as needed) */
+.fill-gray-400\/30 {
+  fill: rgba(156, 163, 175, 0.3);
+}
+.stroke-gray-300\/30 {
+  stroke: rgba(209, 213, 219, 0.3);
+}
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+.-z-10 {
+  z-index: -10;
+}
+.inset-0 {
+  inset: 0;
+}
+.absolute {
+  position: absolute;
+}
+.pointer-events-none {
+  pointer-events: none;
+}
+
+/* Your custom styles */
+/* ... */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  /* ... */
+}
+ 
+
+  .waitlist-form {
+      top: 10px;
+      right: 10px;
+      border-radius: 10px;
+      /* padding: 15px; */
+      /* box-shadow: 0px 4px 8px rgba(1, 99, 124, 0.8); */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-left: 100px;
+  }
+  
+  .waitlist-input {
+    width: 30%;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(10, 256, 200, 0.8); /* Glowing effect */
+  }
+  
+  .waitlist-button {
+    background-color:  #01637c ;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    /* padding: 10px 15px; */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 18px;
+    margin-left: 10px;
+  }
+  
+  .waitlist-button:hover {
+    background-color: gray;
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .waitlist-form {
+      position: relative;
+      top: auto;
+      right: auto;
+      /* padding: 20px; */
+    }
+  
+    .waitlist-input,
+    .waitlist-button {
+      width: 30%;
+      height:40%;
+    }
+  }
+  .custom-cart-width {
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    margin: 0 auto; /* Center the cart horizontally */
+  }
+}

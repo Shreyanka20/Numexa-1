@@ -17,6 +17,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/waitlist.js", "src/pages/_app.js", "src/pages/index.js", "src/components/resources.js", "src/components/navbar.js", "src/components/doc.js", "src/components/developer.js", "src/components/container.js", "src/components/1stpage.js", "src/pages/api/hello.js", "src/components/main-page"],
   "exclude": ["node_modules"]
 }
