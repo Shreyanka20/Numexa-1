@@ -43,6 +43,9 @@ html {
 .w-full {
   width: 100%;
 }
+.p-6 {
+  margin-top: 10rem;
+}
 .h-full {
   height: 100%;
 }

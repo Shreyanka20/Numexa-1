@@ -144,7 +144,7 @@ const Pricing = () => {
           </div>
         </div>
       
-        <div className="grid mt-8 items-start bg-red-600 gap-4 sm:grid-cols-3 sm:space-y-0 xl:grid-cols-3">
+        <div className="grid mt-8 items-start  gap-4 sm:grid-cols-3 sm:space-y-0 xl:grid-cols-3">
   {plans.map((item, idx) => (
     <div
       key={idx}
@@ -200,7 +200,7 @@ const Pricing = () => {
                   // disabled={user && item.cta === "Current Plan"}
                 >
                   {item.cta !== "Current Plan" && (
-                    <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-60"></span>
+                    <span className="absolute right-0 -mt-12 h-32 w-8 "></span>
                   )}
                   {item.name === "Pro" && <BoltIcon className="h-4 w-4" />}
                   <span>{item.cta}</span>

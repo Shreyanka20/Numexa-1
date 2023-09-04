@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Box, Tab, Tabs } from '@mui/material';
-import logo from '../assets/logo.png';
+import logo from '../assets/numexa.png';
 import Hero from './waitlist';
 import DOCBUTTON from './doc';
 import DEVBUTTON from './developer';
@@ -26,7 +26,7 @@ const Navbar = () => {
       <div className="container mx-auto px-3 flex justify-between items-center">
         <div className="logo-and-text-container pr-[100px]"> {/* Add right padding */}
           <div className="logo-container">
-            <Image src={logo} alt="Numexa Logo" className="h-14 w-[360px]" />
+            <Image src={logo} alt="Numexa Logo" className="h-14 w-[300px]" />
           </div>
         </div>
 

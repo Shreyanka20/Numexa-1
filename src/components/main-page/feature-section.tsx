@@ -22,9 +22,9 @@ const features = [
   {
     id: "feature-logs",
     header: "Optimize",
-    name: "Log your prompts and completions",
+    name: "Real-time observability",
     description:
-      "Change 1 line in your code and start logging your API requests. Optimize your token usage and start saving money.",
+      "A platform agnostic observability application for large language models with a user-friendly dashboard for visualizing logs and metrics in real-time.",
     icon: List,
     video: "https://cdn.llm.report/logs-demo.mp4",
     cta: "Get Started",
@@ -34,9 +34,9 @@ const features = [
   {
     id: "feature-users",
     header: "Minimize",
-    name: "Measure Cost Per User",
+    name: "Cost control & Optimisation",
     description:
-      "Analyze your cost per user and adjust your pricing to maximize revenue.",
+      "Numexa provides a detail cost breakdown of your AI operations. It intelligently generates cost-optimization recommendation to optimize your spending on AI operations.",
     icon: Icons.user,
     video: "https://cdn.llm.report/users-demo.mp4",
     cta: "Get Started",
